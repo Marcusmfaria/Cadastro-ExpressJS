@@ -1,13 +1,15 @@
 const pool = require('./config')
 
 let operations = {
-    list: function() {
-        console.log('Listou!')
+    list: function(){
+        return pool.promise().query('select * from alunos')
     },
-    save: function(alunos) {},
-    update: function(alunos){},
-    remove: function(id){},
-    findById: function(id){}
+    save: function(aluno){},
+    findById: function(id){},
+    update: function(aluno){},
+    remove: function(id){
+        return pool.promise().execute('delete from alunos where id = ?', [id ])
+    }
 }
 
 module.exports = operations
