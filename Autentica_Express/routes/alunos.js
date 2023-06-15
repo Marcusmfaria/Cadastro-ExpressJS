@@ -17,9 +17,11 @@ router.get('/', function(request, response) {
 router.post('/delete', function(request, response){
     dao.remove(request.body.id)
     .then( ({rows}) =>{
+        request.flash('sucess', 'Aluno excluído.')
         response.redirect('/alunos')
     }).catch(err =>{
         console.log(err)
+        request.flash('error', 'Ocorreu um erro.')
         response.redirect('/alunos')
     })
 })
