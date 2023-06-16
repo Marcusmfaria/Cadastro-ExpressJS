@@ -16,8 +16,12 @@ router.get('/', function(request, response) {
 
 router.post('/delete', function(request, response){
     dao.remove(request.body.id)
-    .then( ({rows}) =>{
-        request.flash('sucess', 'Aluno excluído.')
+    .then(  ( [result] ) =>{
+        console.log(result)
+        if (result.affectedRows > 0)
+            request.flash('sucess', 'Aluno excluído.')
+        else
+            request.flash('error', `O aluno ${request.body.nome} não foi encontrado.`)            
         response.redirect('/alunos')
     }).catch(err =>{
         console.log(err)

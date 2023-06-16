@@ -8,7 +8,7 @@ let operations = {
     findById: function(id){},
     update: function(aluno){},
     remove: function(id){
-        return pool.promise().execute('delete from alunoss where id = ?', [id ])
+        return pool.promise().execute('delete from alunos where id = ?', [id ])
     }
 }
 
